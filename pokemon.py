@@ -2,6 +2,18 @@ class Pokemon:
     pass
 
 class Pokemon:
+    def check_def(self, defense: int):
+        if 1 <= defense <= 10:
+            return True
+        else:
+            return False
+
+    def check_atq(self, atq: int):
+        if 1 <= atq <= 10:
+            return True
+        else:
+            return False
+
     def __init__(self, id: int, name: str, move: str, hp: int, atq: int, defense: int):
         """Inicializa un pokemon
 
@@ -17,8 +29,8 @@ class Pokemon:
         c_name = type(name) == str
         c_move = move in ["puñetazo", "patada", "codazo", "cabezazo"]
         c_hp = 1 <= hp <= 100
-        c_atq = 1 <= atq <= 10
-        c_def = 1 <= defense <= 100
+        c_atq = self.check_atq(atq)
+        c_def = self.check_def(defense)
 
         # Todos tienen que ser protegidos pero no privados: todos son heredables
         if (c_id and c_name and c_move and c_hp and c_atq and c_def):
@@ -72,7 +84,7 @@ class Pokemon:
         else:
             return False
 
-    
+p = Pokemon(120, "Bulbasus", "puñetazo", 100, 2, 5)
 
 
 

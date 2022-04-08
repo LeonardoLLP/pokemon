@@ -1,5 +1,9 @@
 from pokemon import Pokemon
+from random import randint
 
 class PokemonAir(Pokemon):
-    def __init__(self, id, self, id: int, name: str, move: str, hp: int, atq: int, defense: int):
-        super.__init__
+    def fight_defense(self, damage: int):
+        if randint(0, 1) == 1:
+            return False
+        return super().fight_defense(damage)
+
