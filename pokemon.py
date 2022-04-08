@@ -51,7 +51,7 @@ class Pokemon:
     #? No necesita getter o setter. Realmente python está programado para que ningún método sea protegido o privado. Aún así, es una buena práctica,
     #? pero este pokemon no cambia nunca su ataque o defense, no evoluciona, y el método de arriba ya hace de getter de los atributos que
     #? se espera obtener del pokemon. Sin embargo, sería conveniente asignar un método que cambiase
-    #? los puntos de vida en función del daño que reciba, y además, otra para obtener puntos de defensa
+    #? los puntos de vida en función del daño que reciba, y además, otra para obtener puntos de defensa y otra para el ataque
 
     def is_hit(self, hp_to_deduct: int):
         """Deducts hp """
@@ -59,6 +59,9 @@ class Pokemon:
 
     def get_def(self):
         return self._defense
+
+    def get_atq(self):
+        return self._atq
 
     def is_alive(self):
         if self._hp < 1:
@@ -69,7 +72,7 @@ class Pokemon:
             return True
 
     def fight_attack(self, pokemon: Pokemon):
-        if pokemon.fight_defense(self._atq):
+        if pokemon.fight_defense(self.get_atq()):
             print("Hit {} for {} points of damage".format(pokemon.name, self._atq - pokemon.get_def()))
             return True
         else:
