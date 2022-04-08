@@ -11,8 +11,15 @@ import pandas as pd
 filepath_c1 = "coach_1_pokemons.csv"
 filepath_c2 = "coach_2_pokemons.csv"
 
-c1_df = pd.DataFrame(filepath_c1, sep=",")
-c2_df = pd.DataFrame(filepath_c2, sep=",")
+c1_df = pd.read_csv(filepath_c1, sep=",")
+c2_df = pd.read_csv(filepath_c2, sep=",")
+
+print(c1_df.head())
 
 def get_data_from_user(data: pd.DataFrame):
-    
+    my_list = []
+    for index in len(range(data.index)):
+        ser = c1_df.iloc[index]
+
+print(c1_df[0])
+
