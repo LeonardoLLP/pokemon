@@ -96,7 +96,7 @@ class Pokemon:
         else:
             return False
 
-p = Pokemon(120, "Bulbasus", "puñetazo", 100, 2, 5)
+p = Pokemon(120, "Bulbasus", Move.PUÑETAZO, 100, 2, 5)
 
 
 
