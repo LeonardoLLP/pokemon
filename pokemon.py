@@ -45,6 +45,9 @@ class Pokemon:
         """Deducts hp """
         self._hp -= hp_to_deduct
 
+    def get_def(self):
+        return self._defense
+
     def is_alive(self):
         if self._hp < 1:
             print("Pokemon is dead")
@@ -55,12 +58,21 @@ class Pokemon:
 
     def fight_attack(self, pokemon: Pokemon):
         if pokemon.fight_defense(self._atq):
-            print("Hit {} for {} points of damage".format(pokemon.name, self._atq - pokemon._defense))
+            print("Hit {} for {} points of damage".format(pokemon.name, self._atq - pokemon.get_def()))
             return True
         else:
             print("Attack didn't do any damage")
             return False
 
+    def fight_defense(self, damage: int):
+        hp_hit = damage - self.get_def()
+        if hp_hit > 0:
+            self.is_hit(hp_hit)
+            return True
+        else:
+            return False
+
+    
 
 
 
