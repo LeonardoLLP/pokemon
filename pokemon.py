@@ -28,10 +28,24 @@ class Pokemon:
         id: int
         name: str
         move: Move.str, with str in [PUÑETAZO, PATADA, CODAZO, CABEZAZO]
+            OR str in ["]
         hp: 1 -- 100
         atq: 1 -- 10
         def: 1 -- 10
         """
+
+        #* Declaramos método de inicializar con string también
+        if type(move) == str:
+            if move == "kick":
+                pass
+            elif move == "headbutt":
+                pass
+            elif move == "elbow":
+                pass
+            elif move == "punch":
+                pass
+            else:
+                raise Exception("If move initialized with string, must be valid move (see docstring).")
 
         c_id = type(id) == int
         c_name = type(name) == str
