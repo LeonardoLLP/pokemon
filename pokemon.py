@@ -1,10 +1,10 @@
 class Pokemon:
-    def __init__(self, id, name, move, hp, atq, defense):
+    def __init__(self, id: int, name: str, move: str, hp: int, atq: int, defense: int):
         """Inicializa un pokemon
 
         id: int
         name: str
-        moves: in "puñetazo", "patada", "codazo", "cabezazo"
+        move: str in ["puñetazo", "patada", "codazo", "cabezazo"]
         hp: 1 -- 100
         atq: 1 -- 10
         def: 1 -- 10
@@ -17,6 +17,7 @@ class Pokemon:
         c_atq = 1 <= atq <= 10
         c_def = 1 <= defense <= 100
 
+        # Todos tienen que ser protegidos pero no privados: todos son heredables
         if (c_id and c_name and c_move and c_hp and c_atq and c_def):
             self.id = id
             self.name = name
@@ -29,6 +30,10 @@ class Pokemon:
 
     def print_stats(self):
         print("Pokemon ID {} with name {} has as weapon {} and health {}."
-              .format(self.id, self.name))
+              .format(self.id, self.name, self._move.upper(), self._hp))
+
+
+
+
 
 
