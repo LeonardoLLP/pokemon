@@ -1,3 +1,11 @@
+from enum import Enum
+
+class Move(Enum):
+    PUÑETAZO = "puñetazo"
+    PATADA = "patada"
+    CODAZO = "codazo"
+    CABEZAZO = "cabezazo"
+
 class Pokemon:
     pass
 
@@ -14,12 +22,12 @@ class Pokemon:
         else:
             return False
 
-    def __init__(self, id: int, name: str, move: str, hp: int, atq: int, defense: int):
+    def __init__(self, id: int, name: str, move: Move, hp: int, atq: int, defense: int):
         """Inicializa un pokemon
 
         id: int
         name: str
-        move: str in ["puñetazo", "patada", "codazo", "cabezazo"]
+        move: Move.str, with str in [PUÑETAZO, PATADA, CODAZO, CABEZAZO]
         hp: 1 -- 100
         atq: 1 -- 10
         def: 1 -- 10
@@ -27,16 +35,17 @@ class Pokemon:
 
         c_id = type(id) == int
         c_name = type(name) == str
-        c_move = move in ["puñetazo", "patada", "codazo", "cabezazo"]
+        c_move = move.value in ["puñetazo", "patada", "codazo", "cabezazo"]
         c_hp = 1 <= hp <= 100
         c_atq = self.check_atq(atq)
         c_def = self.check_def(defense)
 
         # Todos tienen que ser protegidos pero no privados: todos son heredables
         if (c_id and c_name and c_move and c_hp and c_atq and c_def):
+            self._enum_move = move
             self.id = id
             self.name = name
-            self._move = move
+            self._move = move.value
             self._hp = hp
             self._atq = atq
             self._defense = defense

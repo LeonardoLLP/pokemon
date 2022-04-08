@@ -13,7 +13,7 @@ class PokemonWater(Pokemon):
 
         id: int
         name: str
-        move: str in ["puñetazo", "patada", "codazo", "cabezazo"]
+        move: Move.str, with str in [PUÑETAZO, PATADA, CODAZO, CABEZAZO]
         hp:   1 -- 100
         atq: 11 -- 20
         def:  1 -- 10
