@@ -20,7 +20,7 @@ c2_df = pd.read_csv(filepath_c2, sep=",", names=headers)
 def get_data_from_user(data: pd.DataFrame):
     list_of_init_args = []
     for index in range(len(data.index)):
-        ser = c1_df.iloc[index].to_list()
+        ser = data.iloc[index].to_list()
         list_of_init_args.append(ser)
 
     list_of_pokemon = []
@@ -75,13 +75,20 @@ def coach_is_undefeated(list_of_pokemon):
         return True
 
 
+# Calls pokemon to fight
+def fight(p_fighting: Pokemon, p_defending: Pokemon):
+    p_fighting.fight_attack(p_defending)
+
+    if p_defending.is_alive() == False:
+        print("Pokemon {} was defeated".format(p_defending.name))
+
+
+
+
+
 
 def play_game():
     get_pokemon_in_a_list_of_pokemon(c1)
-
-
-
-
 
 
 if __name__ == "__main__":
