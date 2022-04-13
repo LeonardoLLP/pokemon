@@ -35,11 +35,30 @@ def get_data_from_user(data: pd.DataFrame):
 c1 = get_data_from_user(c1_df)
 c2 = get_data_from_user(c2_df)
 
-def print_trainer_stats(trainer_list):
+def print_trainer_stats(trainer_num, trainer_list):
+    """Prints trainer stats
 
-    for i in c1:
-        print(i)
+    trainer_num: int
+    trainer_list: list of pokemon"""
+    print("Trainer {} has:".format(trainer_num))
+    for pokemon in trainer_list:
+        print("- {}".format(pokemon))
 
-    for i in c2:
-        print(i)
 
+print_trainer_stats(1, c1)
+print_trainer_stats(2, c2)
+
+
+
+
+
+def play_game():
+    pass
+
+
+
+
+
+
+if __name__ == "__main__":
+    play_game()
