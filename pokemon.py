@@ -1,4 +1,5 @@
 from enum import Enum
+from numpy import int64
 
 class Move(Enum):
     PUÑETAZO = "puñetazo"
@@ -47,7 +48,7 @@ class Pokemon:
             else:
                 raise Exception("If move initialized with string, must be valid move (see docstring).")
 
-        c_id = type(id) == int
+        c_id = type(id) in [int, int64]
         c_name = type(name) == str
         # c_move = move.value in ["puñetazo", "patada", "codazo", "cabezazo"]
         c_move = move in Move

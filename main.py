@@ -24,10 +24,11 @@ def get_data_from_user(data: pd.DataFrame):
         list_of_init_args.append(ser)
     print(list_of_init_args)
 
-    # list_of_pokemon = []
-    # for a, b, c, d, e in list_of_init_args:
-    #     my_pokemon = Pokemon(a, b, c, d, e) #! NO FUNCIONA
-    #     list_of_pokemon.append(my_pokemon)
+    list_of_pokemon = []
+    for a, b, c, d, e, f in list_of_init_args:
+        print(type(a), type(b), type(c), type(d), type(e), type(f))
+        my_pokemon = Pokemon(a, b, c, d, e, f) #! NO FUNCIONA
+        list_of_pokemon.append(my_pokemon)
 
 c1 = get_data_from_user(c1_df)
 
