@@ -112,8 +112,11 @@ class Pokemon:
         else:
             return False
 
-p = Pokemon(120, "Bulbasus", Move.CODAZO, 100, 2, 5)
+    def __str__(self):
+        """Print self stats for reference to pokemon"""
+        return "Pokemon ID {} with name {} has as weapon {} and health {}.".format(self.id, self.name, self._move.upper(), self._hp)
 
-
-p.print_stats()
+if __name__ == "__main__":
+    p = Pokemon(120, "Bulbasus", Move.CODAZO, 100, 2, 5)
+    p.print_stats()
 
