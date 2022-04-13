@@ -15,18 +15,17 @@ headers = ["ID", "Name", "Move", "hp", "Attack", "Defense"]
 c1_df = pd.read_csv(filepath_c1, sep=",", names=headers)
 c2_df = pd.read_csv(filepath_c2, sep=",", names=headers)
 
-print(c1_df.head())
+# print(c1_df.head())
 
 def get_data_from_user(data: pd.DataFrame):
     list_of_init_args = []
     for index in range(len(data.index)):
         ser = c1_df.iloc[index].to_list()
         list_of_init_args.append(ser)
-    print(list_of_init_args)
 
     list_of_pokemon = []
     for a, b, c, d, e, f in list_of_init_args:
-        print(type(a), type(b), type(c), type(d), type(e), type(f))
+        # print(type(a), type(b), type(c), type(d), type(e), type(f))  # Just to check types
         my_pokemon = Pokemon(a, b, c, d, e, f) #! NO FUNCIONA
         list_of_pokemon.append(my_pokemon)
 
@@ -49,11 +48,36 @@ print_trainer_stats(1, c1)
 print_trainer_stats(2, c2)
 
 
+def get_pokemon_in_a_list_of_pokemon(list_of_pokemon):
+    while True:
+        list_of_names = []
+        for pokemon in list_of_pokemon:
+            list_of_names.append(pokemon.name)
+
+        # To avoid innecesary errors for capitalization
+        list_of_names_casefolded = [name.casefold() for name in list_of_names]
+
+        print("Choose pokemon from {}".format(list_of_names))
+        pokemon_str = input().casefold()
+        try:
+            index = list_of_names_casefolded.index(pokemon_str)
+        except:
+            print("Pokemon is not in list. Try again.")
+            continue
+
+        return list_of_pokemon[index]
+
+
+def coach_is_undefeated(list_of_pokemon):
+    if len(list_of_pokemon) == 0:
+        return False
+    else:
+        return True
 
 
 
 def play_game():
-    pass
+    get_pokemon_in_a_list_of_pokemon(c1)
 
 
 
