@@ -4,6 +4,7 @@ from pokemon_air import PokemonAir
 from pokemon_earth import PokemonEarth
 from pokemon_electricity import PokemonElectricity
 
+from typing import List
 import pandas as pd
 
 filepath_c1 = "coach_1_pokemons.csv"
@@ -76,13 +77,30 @@ def coach_is_undefeated(list_of_pokemon):
 
 
 # Calls pokemon to fight
-def fight(p_fighting: Pokemon, p_defending: Pokemon):
-    p_fighting.fight_attack(p_defending)
+def fight(p_attacking: Pokemon, p_defending: Pokemon, l_defending: list[Pokemon]):
+    """Fighting between two pokemons
+
+    p_attacking: Pokemon attacking
+    p_defending: Pokemon defending
+    l_defending: List of trainer defending
+    """
+
+    p_attacking.fight_attack(p_defending)
 
     if p_defending.is_alive() == False:
         print("Pokemon {} was defeated".format(p_defending.name))
+        l_defending.remove(p_defending)
+
+    
 
 
+def turn(attacking_t, defending_t) -> bool:
+    """Normal passing of a turn, returns True if game continues
+
+    attacking_t = Attacking_trainer
+    defending_t = Defending_trainer
+    """
+    pass
 
 
 
