@@ -22,7 +22,7 @@ class Pokemon:
         else:
             return False
 
-    def __init__(self, id: int, name: str, move: Move, hp: int, atq: int, defense: int):
+    def __init__(self, id: int, name: str, move, hp: int, atq: int, defense: int):
         """Inicializa un pokemon
 
         id: int
@@ -37,24 +37,25 @@ class Pokemon:
         #* Declaramos método de inicializar con string también
         if type(move) == str:
             if move == "kick":
-                pass
+                move = Move.PATADA
             elif move == "headbutt":
-                pass
+                move = Move.CABEZAZO
             elif move == "elbow":
-                pass
+                move = Move.CODAZO
             elif move == "punch":
-                pass
+                move = Move.PUÑETAZO
             else:
                 raise Exception("If move initialized with string, must be valid move (see docstring).")
 
         c_id = type(id) == int
         c_name = type(name) == str
-        c_move = move.value in ["puñetazo", "patada", "codazo", "cabezazo"]
+        # c_move = move.value in ["puñetazo", "patada", "codazo", "cabezazo"]
+        c_move = move in Move
         c_hp = 1 <= hp <= 100
         c_atq = self.check_atq(atq)
         c_def = self.check_def(defense)
 
-        # Todos tienen que ser protegidos pero no privados: todos son heredables
+        #_Todos tienen que ser protegidos pero no privados: todos son heredables
         if (c_id and c_name and c_move and c_hp and c_atq and c_def):
             self._enum_move = move
             self.id = id
@@ -110,10 +111,8 @@ class Pokemon:
         else:
             return False
 
-p = Pokemon(120, "Bulbasus", Move.PUÑETAZO, 100, 2, 5)
+p = Pokemon(120, "Bulbasus", Move.CODAZO, 100, 2, 5)
 
 
-
-
-
+p.print_stats()
 

@@ -20,12 +20,14 @@ print(c1_df.head())
 def get_data_from_user(data: pd.DataFrame):
     list_of_init_args = []
     for index in range(len(data.index)):
-        ser = c1_df.iloc[index].to_list
+        ser = c1_df.iloc[index].to_list()
         list_of_init_args.append(ser)
+    print(list_of_init_args)
 
-    list_of_pokemon = []
-    for init in list_of_init_args:
-        my_pokemon = Pokemon(init[0], init[1], init[2], init[3], init[4], init[5])
+    # list_of_pokemon = []
+    # for a, b, c, d, e in list_of_init_args:
+    #     my_pokemon = Pokemon(a, b, c, d, e) #! NO FUNCIONA
+    #     list_of_pokemon.append(my_pokemon)
 
 c1 = get_data_from_user(c1_df)
 
