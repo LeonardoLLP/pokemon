@@ -30,6 +30,8 @@ def get_data_from_user(data: pd.DataFrame):
         my_pokemon = Pokemon(a, b, c, d, e, f) #! NO FUNCIONA
         list_of_pokemon.append(my_pokemon)
 
+    return list_of_pokemon
+
 c1 = get_data_from_user(c1_df)
 
 print(c1)
