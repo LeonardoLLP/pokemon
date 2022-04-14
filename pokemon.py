@@ -125,7 +125,7 @@ class Pokemon:
 
     def __str__(self):
         """Print self stats for reference to pokemon"""
-        return self.get_stats
+        return self.get_stats()
 
 if __name__ == "__main__":
     p = Pokemon(120, "Bulbasus", Move.CODAZO, 100, 2, 5)
