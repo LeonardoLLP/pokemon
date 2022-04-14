@@ -4,7 +4,7 @@ from pokemon_air import PokemonAir
 from pokemon_earth import PokemonEarth
 from pokemon_electricity import PokemonElectricity
 
-from typing import List
+from typing import List, Union
 import pandas as pd
 
 filepath_c1 = "coach_1_pokemons.csv"
@@ -18,8 +18,10 @@ c2_df = pd.read_csv(filepath_c2, sep=",", names=headers)
 
 # print(c1_df.head())
 
-def get_data_from_user(data: pd.DataFrame):
+def get_data_from_user(t_name: str, data: pd.DataFrame):
+    """Creates trainer with trainer name and data afterwards"""
     list_of_init_args = []
+
     for index in range(len(data.index)):
         ser = data.iloc[index].to_list()
         list_of_init_args.append(ser)
@@ -27,29 +29,32 @@ def get_data_from_user(data: pd.DataFrame):
     list_of_pokemon = []
     for a, b, c, d, e, f in list_of_init_args:
         # print(type(a), type(b), type(c), type(d), type(e), type(f))  # Just to check types
-        my_pokemon = Pokemon(a, b, c, d, e, f) #! NO FUNCIONA
+        my_pokemon = Pokemon(a, b, c, d, e, f)
         list_of_pokemon.append(my_pokemon)
 
-    return list_of_pokemon
+    trainer_dict = {
+        "name": t_name,
+        "pokemons": list_of_pokemon
+    }
 
-c1 = get_data_from_user(c1_df)
-c2 = get_data_from_user(c2_df)
+    return trainer_dict
 
-def print_trainer_stats(trainer_num, trainer_list):
-    """Prints trainer stats
+c1 = get_data_from_user("Ash",   c1_df)
+c2 = get_data_from_user("Brook", c2_df)
 
-    trainer_num: int
-    trainer_list: list of pokemon"""
-    print("Trainer {} has:".format(trainer_num))
-    for pokemon in trainer_list:
+def print_trainer_stats(trainer: dict):
+    """Prints trainer stats"""
+    print("{} has:".format(trainer["name"]))
+    for pokemon in trainer["pokemons"]:
         print("- {}".format(pokemon))
 
 
-print_trainer_stats(1, c1)
-print_trainer_stats(2, c2)
+print_trainer_stats(c1)
+print_trainer_stats(c2)
 
 
-def get_pokemon_in_a_list_of_pokemon(list_of_pokemon):
+def get_pokemon_in_a_list_of_pokemon(list_of_pokemon: list[Pokemon]):
+    """Must be just list with pokemon"""
     while True:
         list_of_names = []
         for pokemon in list_of_pokemon:
@@ -69,7 +74,7 @@ def get_pokemon_in_a_list_of_pokemon(list_of_pokemon):
         return list_of_pokemon[index]
 
 
-def coach_is_undefeated(list_of_pokemon):
+def coach_is_undefeated(list_of_pokemon: list[Pokemon]):
     if len(list_of_pokemon) == 0:
         return False
     else:
@@ -91,7 +96,7 @@ def fight(p_attacking: Pokemon, p_defending: Pokemon, l_defending: list[Pokemon]
         print("Pokemon {} was defeated".format(p_defending.name))
         l_defending.remove(p_defending)
 
-    
+
 
 
 def turn(attacking_t, defending_t) -> bool:
@@ -100,14 +105,15 @@ def turn(attacking_t, defending_t) -> bool:
     attacking_t = Attacking_trainer
     defending_t = Defending_trainer
     """
-    pass
+    print("")
 
 
 
 
 def play_game():
-    get_pokemon_in_a_list_of_pokemon(c1)
+    get_pokemon_in_a_list_of_pokemon(c1["pokemons"])
 
 
 if __name__ == "__main__":
     play_game()
+
