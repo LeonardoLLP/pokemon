@@ -29,7 +29,6 @@ class Pokemon:
         id: int
         name: str
         move: Move.str, with str in [PUÑETAZO, PATADA, CODAZO, CABEZAZO]
-            OR str in ["]
         hp: 1 -- 100
         atq: 1 -- 10
         def: 1 -- 10
@@ -68,15 +67,27 @@ class Pokemon:
         else:
             raise Exception("Values for pokemon not correct. Check docstring for more info")
 
-    def print_stats(self):
-        """Prints main stats of pokemon"""
-        print("Pokemon ID {} with name {} has as weapon {} and health {}."
-              .format(self.id, self.name, self._move.upper(), self._hp))
+
 
     #? No necesita getter o setter. Realmente python está programado para que ningún método sea protegido o privado. Aún así, es una buena práctica,
     #? pero este pokemon no cambia nunca su ataque o defense, no evoluciona, y el método de arriba ya hace de getter de los atributos que
     #? se espera obtener del pokemon. Sin embargo, sería conveniente asignar un método que cambiase
     #? los puntos de vida en función del daño que reciba, y además, otra para obtener puntos de defensa y otra para el ataque
+    
+    def get_stats(self):
+        """Returns pokemon stats as string"""
+        return "Pokemon ID {} with name {} has as weapon {} and health {}.".format(
+            self.id, self.name, self._move.upper(), self._hp)
+
+    def get_short_stats(self):
+        """Returns short pokemon stats"""
+        return "Pokemon {} with {} hp".format(
+            self.name, self._hp)
+
+    def print_stats(self):
+        """Prints main stats of pokemon"""
+        print(self.get_stats)
+
 
     def is_hit(self, hp_to_deduct: int):
         """Deducts hp """
@@ -114,7 +125,7 @@ class Pokemon:
 
     def __str__(self):
         """Print self stats for reference to pokemon"""
-        return "Pokemon ID {} with name {} has as weapon {} and health {}.".format(self.id, self.name, self._move.upper(), self._hp)
+        return self.get_stats
 
 if __name__ == "__main__":
     p = Pokemon(120, "Bulbasus", Move.CODAZO, 100, 2, 5)

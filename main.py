@@ -42,7 +42,9 @@ def get_data_from_user(t_name: str, data: pd.DataFrame):
 c1 = get_data_from_user("Ash",   c1_df)
 c2 = get_data_from_user("Brook", c2_df)
 
-def print_trainer_stats(trainer: dict):
+trainer_type = dict[str, Union[str, list[Pokemon]]]
+
+def print_trainer_stats(trainer: dict[str, Union[str, list[Pokemon]]]):
     """Prints trainer stats"""
     print("{} has:".format(trainer["name"]))
     for pokemon in trainer["pokemons"]:
@@ -53,12 +55,17 @@ print_trainer_stats(c1)
 print_trainer_stats(c2)
 
 
+def names_of_pokemon(list_of_pokemon: list[Pokemon]):
+    list_of_names = []
+    for pokemon in list_of_pokemon:
+        list_of_names.append(pokemon.name)
+    return list_of_names
+
+
 def get_pokemon_in_a_list_of_pokemon(list_of_pokemon: list[Pokemon]):
     """Must be just list with pokemon"""
     while True:
-        list_of_names = []
-        for pokemon in list_of_pokemon:
-            list_of_names.append(pokemon.name)
+        list_of_names = names_of_pokemon(list_of_pokemon)
 
         # To avoid innecesary errors for capitalization
         list_of_names_casefolded = [name.casefold() for name in list_of_names]
@@ -105,13 +112,14 @@ def turn(attacking_t, defending_t) -> bool:
     attacking_t = Attacking_trainer
     defending_t = Defending_trainer
     """
-    print("")
+    print("{} is attacking {}")
 
 
 
 
 def play_game():
-    get_pokemon_in_a_list_of_pokemon(c1["pokemons"])
+    foo = get_pokemon_in_a_list_of_pokemon(c1["pokemons"])
+    print(foo)
 
 
 if __name__ == "__main__":
