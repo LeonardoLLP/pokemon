@@ -52,8 +52,8 @@ def print_trainer_stats(trainer: dict[str, Union[str, list[Pokemon]]]):
         print("- {}".format(pokemon))
 
 
-print_trainer_stats(trainer1)
-print_trainer_stats(trainer2)
+# print_trainer_stats(trainer1)
+# print_trainer_stats(trainer2)
 
 
 def names_of_pokemon(list_of_pokemon: list[Pokemon]):
@@ -142,15 +142,25 @@ def turn(attacking_t, defending_t) -> bool:
     fight(attacking_p, defending_p, defending_t["pokemons"])
     print_trainer_stats(defending_t)  #TODO: Remove after testing
     
+    return coach_is_undefeated(defending_t["pokemons"])
 
 
 
 
 #! Now used to debuge
-def play_game():
-    # foo = get_pokemon_in_a_list_of_pokemon(trainer1["pokemons"])
-    # print(foo)
-    turn(trainer1, trainer2)
+def play_game(player1_data: tuple(str, pd.DataFrame), player2_data: tuple(str ,pd.DataFrame)):
+    # player1, pokemons1 = 
+    trainer1 = get_data_from_user("Ash",   c1_df)
+    trainer2 = get_data_from_user("Brook", c2_df)
+
+    print("In this legendary match the unbeatable {} will fight the unstopable {}".format(trainer1["name"], trainer2["name"]))
+    sleep(2)
+    print("=== BEGIN THE FIGHT ===")
+    sleep(2)
+
+    while True:
+        pass
+
 
 
 if __name__ == "__main__":
