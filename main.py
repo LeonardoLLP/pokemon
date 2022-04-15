@@ -144,7 +144,7 @@ def turn(attacking_t, defending_t) -> bool:
     print("{} attacks {}".format(attacking_p.name, defending_p.name))
 
     fight(attacking_p, defending_p, defending_t["pokemons"])
-    
+
     sleep(1)
 
     return coach_is_undefeated(defending_t["pokemons"])
@@ -166,8 +166,15 @@ def play_game(player1_data: tuple[str, pd.DataFrame], player2_data: tuple[str ,p
     while trainer1_alive and trainer2_alive:
         print_trainer_stats(trainer1)
         print_trainer_stats(trainer2)
+
+        # Create copy to conserve if pokemon dies mid-turn, according to specifications for exercise
+        trainer2_copy = {
+            "name": trainer2["name"],
+            "pokemons": trainer2["pokemons"].copy(),
+        }
+
         trainer2_alive = turn(trainer1, trainer2)
-        trainer1_alive = turn(trainer2, trainer1)
+        trainer1_alive = turn(trainer2_copy, trainer1)
 
     # Logic for both dead
     if not (trainer1_alive or trainer2_alive):
