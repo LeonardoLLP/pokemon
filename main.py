@@ -159,6 +159,17 @@ def play_game(player1_data: tuple(str, pd.DataFrame), player2_data: tuple(str ,p
     sleep(2)
 
     while True:
+        trainer2_alive = turn(trainer1, trainer2)
+        trainer1_alive = turn(trainer2, trainer1)
+        if not (trainer1_alive and trainer2_alive):
+            break
+
+    # Logic for both dead
+    if not (trainer1_alive or trainer2_alive)
+        pass
+    elif not trainer1_alive:
+        pass
+    else:  # not trainer2_alive:
         pass
 
 
