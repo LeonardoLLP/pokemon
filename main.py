@@ -85,7 +85,7 @@ def get_pokemon_in_a_list_of_pokemon(list_of_pokemon: list[Pokemon]):
         try:
             index = list_of_names_casefolded.index(pokemon_str)
         except:
-            print("Pokemon is not in list. Try again.")
+            print("Pokemon is not in list. List = {}".format(list_of_pokemon))
             continue
 
         return list_of_pokemon[index]
@@ -125,7 +125,24 @@ def turn(attacking_t, defending_t) -> bool:
 
     print("{} is attacking {}".format(attacking_t["name"], defending_t["name"]))
     print("{}, choose your attacking pokmeon".format(attacking_t["name"]))
-    print("from {}:".format(name_list_to_str(names_of_pokemon(attacking_t["pokemons"]))))
+    print("from {}:".format(
+        name_list_to_str(names_of_pokemon(attacking_t["pokemons"]))
+        ))
+    attacking_p = get_pokemon_in_a_list_of_pokemon(attacking_t["pokemons"])
+
+    print("Now choose pokemon to attack")
+    print("from {}:".format(
+        name_list_to_str(names_of_pokemon(defending_t["pokemons"]))
+        ))
+    defending_p = get_pokemon_in_a_list_of_pokemon(defending_t["pokemons"])
+
+    print("{} attacks {}".format(attacking_p.name, defending_p.name))
+
+    print_trainer_stats(defending_t)  #TODO: Remove affter testing
+    fight(attacking_p, defending_p, defending_t["pokemons"])
+    print_trainer_stats(defending_t)  #TODO: Remove after testing
+    
+
 
 
 
