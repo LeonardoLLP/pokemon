@@ -124,56 +124,69 @@ def turn(attacking_t, defending_t) -> bool:
     """
 
     print("{} is attacking {}".format(attacking_t["name"], defending_t["name"]))
+    sleep(2)
     print("{}, choose your attacking pokmeon".format(attacking_t["name"]))
+    sleep(0.5)
     print("from {}:".format(
         name_list_to_str(names_of_pokemon(attacking_t["pokemons"]))
         ))
     attacking_p = get_pokemon_in_a_list_of_pokemon(attacking_t["pokemons"])
 
+    sleep(0.5)
     print("Now choose pokemon to attack")
+    sleep(0.5)
     print("from {}:".format(
         name_list_to_str(names_of_pokemon(defending_t["pokemons"]))
         ))
     defending_p = get_pokemon_in_a_list_of_pokemon(defending_t["pokemons"])
 
+    sleep(0.5)
     print("{} attacks {}".format(attacking_p.name, defending_p.name))
 
-    print_trainer_stats(defending_t)  #TODO: Remove affter testing
     fight(attacking_p, defending_p, defending_t["pokemons"])
-    print_trainer_stats(defending_t)  #TODO: Remove after testing
     
+    sleep(1)
+
     return coach_is_undefeated(defending_t["pokemons"])
 
 
 
 
 #! Now used to debuge
-def play_game(player1_data: tuple(str, pd.DataFrame), player2_data: tuple(str ,pd.DataFrame)):
-    # player1, pokemons1 = 
-    trainer1 = get_data_from_user("Ash",   c1_df)
-    trainer2 = get_data_from_user("Brook", c2_df)
+def play_game(player1_data: tuple[str, pd.DataFrame], player2_data: tuple[str ,pd.DataFrame]):
+    trainer1 = get_data_from_user(*player1_data)
+    trainer2 = get_data_from_user(*player2_data)
 
     print("In this legendary match the unbeatable {} will fight the unstopable {}".format(trainer1["name"], trainer2["name"]))
     sleep(2)
     print("=== BEGIN THE FIGHT ===")
     sleep(2)
 
-    while True:
+    trainer1_alive = trainer2_alive = True
+    while trainer1_alive and trainer2_alive:
+        print_trainer_stats(trainer1)
+        print_trainer_stats(trainer2)
         trainer2_alive = turn(trainer1, trainer2)
         trainer1_alive = turn(trainer2, trainer1)
-        if not (trainer1_alive and trainer2_alive):
-            break
 
     # Logic for both dead
-    if not (trainer1_alive or trainer2_alive)
-        pass
+    if not (trainer1_alive or trainer2_alive):
+        print("Both trainers are dead. It's a draw!")
     elif not trainer1_alive:
-        pass
+        print("{} was defeated. {} wins the match!".format(trainer1["name"], trainer2["name"]))
     else:  # not trainer2_alive:
-        pass
+        print("{} was defeated. {} wins the match!".format(trainer2["name"], trainer1["name"]))
+
+    sleep(1)
+
+    print("=== GAME ENDED ===")
 
 
 
 if __name__ == "__main__":
-    play_game()
+    print("--- LOADING GAME ---")
+    sleep(1)
+    name1 = input("Name the first trainer: ")
+    name2 = input("Name the second trainer: ")
+    play_game((name1, c1_df), (name2, c2_df))
 
